@@ -11,6 +11,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Hey, this is Sam's web page!
 
-```{r, echo=FALSE}
-knitr::include_graphics("./PB1201_STORY_CARO-Authority-.HealthyOutside-DOG-20160818.jfif")
-```
+hey whats up
