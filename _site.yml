@@ -1,0 +1,9 @@
+name: "Sam's Web Page"
+output_dir: "."
+navbar:
+  title: "Sam Giardina"
+  left:
+   - text: "Home"
+     href: index.html
+   - text: "bookdown"
+     href: bookdown.html
