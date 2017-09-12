@@ -11,4 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Hey, this is Sam's web page!
 
-hey whats up
+```{r, echo=FALSE}
+knitr::include_graphics("./images/snoop.jpg")
+```
