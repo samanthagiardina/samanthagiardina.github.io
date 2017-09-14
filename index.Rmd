@@ -11,5 +11,5 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("./images/snoop.jpg")
+knitr::include_graphics("./images/soph.jpg")
 ```

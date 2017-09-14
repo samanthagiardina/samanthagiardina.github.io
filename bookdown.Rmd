@@ -9,3 +9,12 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Introduction to R
+
+Intermediate R
+
+Reporting with R Markdown
+
+Working with the RStudio IDE (Part 1)
+
+Data Visualization in R
