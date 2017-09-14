@@ -5,5 +5,8 @@ navbar:
   left:
    - text: "Home"
      href: index.html
-   - text: "bookdown"
+   - text: "Completed DataCamp Courses"
      href: bookdown.html
+   - text: "Hobbies"
+     href: hobbies.html
+     

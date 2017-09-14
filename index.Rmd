@@ -1,5 +1,5 @@
 ---
-title: "index.Rmd"
+title: "Sam Giardina"
 author: "Sam Giardina"
 date: "9/12/2017"
 output: html_document
@@ -9,7 +9,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Hey, this is Sam's web page!
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./images/snoop.jpg")
