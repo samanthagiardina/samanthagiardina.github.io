@@ -1,7 +1,6 @@
 ---
 title: "Sam Giardina"
 author: "Sam Giardina"
-date: "9/12/2017"
 output: html_document
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: "Resume"
 author: "Sam Giardina"
-date: "9/21/2017"
 output: html_document
 ---
 
