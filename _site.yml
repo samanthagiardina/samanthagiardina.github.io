@@ -10,4 +10,5 @@ navbar:
    - text: "Hobbies"
      href: hobbies.html
    - text: "Resume"
-   - href: Resume.html
+     href: Resume.html
+     
