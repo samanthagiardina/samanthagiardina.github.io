@@ -1,6 +1,5 @@
 ---
 title: "Sam Giardina"
-author: "Sam Giardina"
 output: html_document
 ---
 

@@ -9,4 +9,5 @@ navbar:
      href: bookdown.html
    - text: "Hobbies"
      href: hobbies.html
-     
+   - text: "Resume"
+   - href: resume.html

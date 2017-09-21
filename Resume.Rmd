@@ -1,6 +1,5 @@
 ---
 title: "Resume"
-author: "Sam Giardina"
 output: html_document
 ---
 

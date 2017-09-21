@@ -1,6 +1,5 @@
 ---
 title: "Hobbies"
-author: "Sam Giardina"
 output: html_document
 ---
 
