@@ -9,3 +9,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r, echo=FALSE}
+knitr::include_graphics("./images/Screen Shot 2017-09-21 at 2.51.37 PM.png")
+```
+```{r, echo=FALSE}
+knitr::include_graphics("./images/Screen Shot 2017-09-21 at 2.51.59 PM.png")
+```
