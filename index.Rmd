@@ -7,6 +7,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Samantha H. Giardina
+Appalachian State University '18
+
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./images/soph.jpg")
