@@ -1,0 +1,33 @@
+---
+title: "GSS"
+author: "Sam Giardina"
+date: "10/19/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center", message = FALSE, warning = FALSE)
+```
+
+# Data Read-in
+
+```{r}
+GSS2002 <- read.csv("http://www1.appstate.edu/~arnholta/Data/GSS2002.csv")
+DT::datatable(GSS2002)
+```
+
+
+
+```{r, fig.align='center'}
+library(tidyverse)
+GSS2002 %>%
+  group_by(Education, DeathPenalty) %>%
+  summarize(n()) %>%
+  na.omit() %>%
+  ggplot(aes(x=Education, y=`n()`, fill=DeathPenalty)) +
+  geom_bar(position = "fill", stat="identity") +
+  scale_fill_manual(values=c("Purple", "Cyan"))
+  
+```
+
+
