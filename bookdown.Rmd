@@ -15,4 +15,6 @@ Reporting with R Markdown
 
 Working with the RStudio IDE (Part 1)
 
-Data Visualization in R ~ Almost :)
+Data Visualization in R 
+
+Data Visualization with *ggplot2* (Part 1) ~ Almost :)
