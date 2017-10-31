@@ -19,7 +19,7 @@ knitr::include_graphics("./images/IMG_7575.JPG")
 knitr::include_graphics("./images/IMG_0206.JPG")
 ```
 
-**Painting**
+**Art**
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./images/BOBBY.jpeg")
