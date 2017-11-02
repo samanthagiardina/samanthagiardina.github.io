@@ -6,4 +6,4 @@ output: html_document
 # List of Projects
 
 
-* [Project 1](./projects/CopyOfBicycleAnalysis.html)
+* [Project 1](./projects/CopyOfBicycle.Analysis.html)
