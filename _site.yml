@@ -9,5 +9,7 @@ navbar:
      href: hobbies.html
    - text: "Resume"
      href: Resume.html
-   - text: "Class Project - GSS"  
+   - text: "Class Project"  
      href: GSS.html
+   - text: "Projects"
+     href: Projects.html
