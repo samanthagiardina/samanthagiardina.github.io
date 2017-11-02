@@ -210,7 +210,7 @@ Wow! Looks like quite a few stations took away bike docks and none gained any. P
 
 ### Current Station Size
 
-I’m going to take one quick look at the current size of each station before moving on to the next data set. Note: I did not include any stations that were closed as of August 31, 2016 in this map
+I’m going to take one quick look at the current size of each station before moving on to the next data set. *Note: I did not include any stations that were closed as of August 31, 2016 in this map*
 
 ```{r}
 ggmap(mymap2) + 
@@ -222,9 +222,9 @@ So it looks like the biggest stations tend to be on the outskirts of the rest. W
 
 Alright, I’m feeling good about exploring this dataset. Time to check out the trip dataset!
 
-## Exploring the trips dataset
+## Exploring the Trips Data set
 
-It’s been a while since we’ve looked at the trip dataset, so let’s take another peek at it here.
+It’s been a while since we’ve looked at the trip data set, so let’s take another peek at it here.
 
 ```{r}
 glimpse(trip)
@@ -244,7 +244,7 @@ trip_2$stop_date <- mdy(trip_2$stop_date)
 
 ```
 
-Great, so there are quite a few things that we can potentially look at using this dataset by itself. Let’s start with the number of trips per day since Pronto! began opening bike stations. To do that, we need to recode our start date/times as POSIXct objects. We’ll use the `lubridate` package for this.
+Great, so there are quite a few things that we can potentially look at using this data set by itself. Let’s start with the number of trips per day since Pronto! began opening bike stations. To do that, we need to recode our start date/times as POSIXct objects. We’ll use the `lubridate` package for this.
 
 Great! Time to visualize the number of rides per day.
 
