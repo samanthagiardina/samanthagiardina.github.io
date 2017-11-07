@@ -1,5 +1,5 @@
 ---
-title: "Completed DataCamp Courses"
+title: "Completed DataCamp Training"
 author: "Sam Giardina"
 date: "9/12/2017"
 output: html_document

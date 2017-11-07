@@ -17,4 +17,10 @@ Working with the RStudio IDE (Part 1)
 
 Data Visualization in R 
 
-Data Visualization with *ggplot2* (Part 1) ~ Almost :)
+Data Visualization with *ggplot2* (Part 1)
+
+Data Visualization with *ggplot2* (Part 2)
+
+Data Manipulation in R with *dplyr*
+
+Joining Data in R with *dplyr*

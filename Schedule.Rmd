@@ -1,0 +1,41 @@
+---
+title: "Schedule 2017  - 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+\ 
+
+# Fall 2017
+
+__College Algebra with Applications__: 9am - 9:50am MTWR
+
+__Sociology of Sport__: 10am - 10:50am MWF
+
+__Human Behavior & Social Environment__: 12pm - 12:50pm MWF
+
+__Women, Crime, & the Justice System__: 12:30pm - 1:45pm TR
+
+__Data Science 1__: 3:30pm - 4:45pm TR
+
+\
+
+
+# Spring 2018
+
+__Communication Disorders__: 9am - 9:50am MWF
+
+__Contemporary Issues in Psychology__ (Capstone Course): 10am - 10:50am MWF
+
+__Sociology of Popular Culture__: 11am - 11:50am MWF
+
+__Psychology of Personality & Individual Differences__: 9:30am - 10:45am TR
+
+__Cognitive Processes__: 11am - 12:15pm TR
+
+__Psychosocial Stressors__: 12:30pm - 1:45pm TR
+
