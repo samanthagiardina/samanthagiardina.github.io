@@ -2,7 +2,7 @@
 title: "Senior Year Schedule"
 output: 
   html_document:
-    theme: cosmo
+    theme: minty
 ---
 
 ```{r setup, include=FALSE}

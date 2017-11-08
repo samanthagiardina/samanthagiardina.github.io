@@ -2,7 +2,7 @@
 title: "Completed DataCamp Training"
 output: 
   html_document:
-    theme: cosmo
+    theme: minty
 ---
 
 ```{r setup, include=FALSE}
