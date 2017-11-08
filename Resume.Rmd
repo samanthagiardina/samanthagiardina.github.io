@@ -12,6 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 \
 
 
-### [Resume](SamanthaGiardinaResume.pdf)
+# [Resume](SamanthaGiardinaResume.pdf)
 
 #### Here, I've linked my resume. It includes my education, work history, and some valuable working skills I possess. Feel free to check it out!
