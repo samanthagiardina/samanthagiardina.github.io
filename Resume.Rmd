@@ -1,5 +1,4 @@
 ---
-title: "Resume"
 output: html_document
 ---
 
@@ -7,4 +6,10 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-[My Resume](SamanthaGiardinaResume.pdf)
+
+\
+
+
+### [Resume](SamanthaGiardinaResume.pdf)
+
+#### Here, I've linked my resume. It includes my education, work history, and some valuable working skills I possess. Feel free to check it out!

@@ -11,5 +11,5 @@ navbar:
      href: bookdown.html
    - text: "Resume"
      href: Resume.html
-   - text: "Projects"
-     href: Projects.html
+   - text: "Course Project"
+     href: Course Project.html

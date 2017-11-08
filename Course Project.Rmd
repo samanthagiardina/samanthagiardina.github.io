@@ -1,0 +1,16 @@
+---
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+\
+
+
+# [Project 1](./projects/CopyOfBicycle.Analysis.html)
+
+This is the course project my group and I worked on throughout the Fall 2017 semester in Data Science 1. It is an attempt at replicating a project previously completed by _Anna Thomas_.
