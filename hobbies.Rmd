@@ -45,10 +45,10 @@ knitr::include_graphics("./images/BOBBY.jpeg")
 \
 
 
-##Working Out
+##Music
 
-Contrary to what this picture depicts, I love going to the gym and using exercise machines! I usually just go for the elliptical and free-weights. It's very stress-releiving, and it really does make for a better day. I can tell when there's extra endorphins flowin'.
+I think more than anything, I love love LOVE music and everything to do with it. I listen to all kinds of genres, tempos, bands, artists, etc. I spend a lot of my time perfecting my Spotify playlists and browsing for new music I've never heard. I also try to go to as many concerts as I can! Live music cures the soul. 
 
 ```{r, echo=FALSE}
-knitr::include_graphics("./images/IMG_4379.JPG")
+knitr::include_graphics("./images/fullsizeoutput_21a2.jpeg")
 ```
