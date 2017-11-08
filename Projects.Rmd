@@ -1,7 +1,7 @@
 ---
 output: 
   html_document:
-    theme: minty
+    theme: journal
 ---
 
 
