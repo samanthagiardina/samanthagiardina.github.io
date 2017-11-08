@@ -7,25 +7,47 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-**Hiking**
+
+\
+
+
+##Hiking
+
+I love to go hiking! It allows me to get some exercise, fresh air, and to releive some stress. It's also very humbling indulging in nature. Most often I hit the Parkway or Linville Gorge.
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./images/IMG_7575.JPG")
 ```
 
-**Snowboarding**
+\
+
+
+##Snowboarding
+
+I began snowboarding my freshman year when I took the class as one of my P.E. credits. I fell in love with it and got a board for my birthday the next year. Now, I spend a lot of my free-time in the winter with my friends on the slopes! Typically, App. Ski Mtn. or Sugar Mtn. 
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./images/IMG_0206.JPG")
 ```
 
-**Art**
+\
+
+
+##Art
+
+I've never really taken any interest in art in the educational setting, mostly because I'm not all that good. However, I love to paint leisurely. I often have blank canvases just waiting to be painted when the inspiration strikes. 
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./images/BOBBY.jpeg")
 ```
 
-**Working Out**
+
+\
+
+
+##Working Out
+
+Contrary to what this picture depicts, I love going to the gym and using exercise machines! I usually just go for the elliptical and free-weights. It's very stress-releiving, and it really does make for a better day. I can tell when there's extra endorphins flowin'.
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./images/IMG_4379.JPG")

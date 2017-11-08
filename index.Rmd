@@ -1,5 +1,5 @@
 ---
-title: "Sam Giardina"
+title: "Samantha H. Giardina"
 output: html_document
 ---
 
@@ -7,7 +7,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Samantha H. Giardina
+
 
 _Appalachian State University '18_
 

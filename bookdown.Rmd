@@ -1,5 +1,5 @@
 ---
-title: "Completed DataCamp Courses"
+title: "Completed DataCamp Training"
 output: html_document
 ---
 
@@ -7,20 +7,23 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Introduction to R
 
-Intermediate R
+\
 
-Reporting with R Markdown
+__Introduction to R__
 
-Working with the RStudio IDE (Part 1)
+__Intermediate R__
 
-Data Visualization in R 
+__Reporting with R Markdown__
 
-Data Visualization with *ggplot2* (Part 1)
+__Working with the RStudio IDE (Part 1)__
 
-Data Visualization with *ggplot2* (Part 2)
+__Data Visualization in R__ 
 
-Data Manipulation in R with *dplyr*
+__Data Visualization with *ggplot2* (Part 1)__
 
-Joining Data in R with *dplyr*
+__Data Visualization with *ggplot2* (Part 2)__
+
+__Data Manipulation in R with *dplyr*__
+
+__Joining Data in R with *dplyr*__
