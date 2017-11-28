@@ -1,18 +1,24 @@
 ---
 title: "Bicycle Analysis"
-author: "Kelly Loucks, Sam Giardina, Tucker Southern"
-date: "9/19/2017"
-output: html_document
+author: " Sam Giardina, Kelly Loucks, Tucker Southern"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output: bookdown::html_document2
 ---
 
 
 #Introduction
-
+  
 This is an exploration of bicycle-sharing data in the city of Seattle, WA (USA) from October 2014 - August 2016. I hope to eventually combine this data with other forms of ride-sharing and transportation in the city, but this will be the first step.
 
 Time to get started!
 
 #Loading Necessary Packages
+```{r global_options, include=FALSE}
+rm(list=ls()) ### To clear namespace
+library(knitr)
+opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
+               echo=TRUE, warning=FALSE, message=FALSE)
+```
 
 ```{r, echo=FALSE, results=FALSE, message=FALSE, warning=FALSE}
 # For data manipulation and tidying
@@ -32,7 +38,8 @@ library(caret)
 
 ```
 
-Importing all of the data can be downloaded from Kaggle. This project contains 3 data sets and I’ll import and inspect each data file independently.
+##Importing Data
+all of the data can be downloaded from Kaggle. This project contains 3 data sets and I’ll import and inspect each data file independently.
 
 ```{r}
 station <- read.csv(file = "station.csv", header = TRUE, 
@@ -54,71 +61,71 @@ Ok, let’s take a look at each of these data files.
 str(station)
 ```
 
-Looks like this data set is dealing with 9 variables:
+Looks like this dataset is dealing with 9 variables:
 
-* Station ID : The individual ID number for a bike station
-* Name : The name of that station ID, also appears to be the rough location of the station
-* Latitude : The latitude of the station
-* Longitude : The longitude of the station
-* Install Date : When that particular station was installed (in MM/DD/YYYY format)
-* Install Dock Count : Number of docks (bike positions) available at each station on installation day
-* Modification Date : When a particular station was modified (in MM/DD/YYYY format)
-* Current Dock Count : Number of docks (bike positions) available at each station on August 31, 2016
-* Decommission Date : The date that a particular station was put out of service (in MM/DD/YYYY format)
+* __Station ID__ : The individual ID number for a bike station
+* __Name__ : The name of that station ID, also appears to be the rough location of the station
+* __Latitude__ : The latitude of the station
+* __Longitude__ : The longitude of the station
+* __Install Date__ : When that particular station was installed (in MM/DD/YYYY format)
+* __Install Dock Count__ : Number of docks (bike positions) available at each station on installation day
+* __Modification Date__ : When a particular station was modified (in MM/DD/YYYY format)
+* __Current Dock Count__ : Number of docks (bike positions) available at each station on August 31, 2016
+* __Decommission Date__ : The date that a particular station was put out of service (in MM/DD/YYYY format)
 
 ### Trip
 ```{r}
 str(trip)
 ```
 
-This data set appears to contain 12 variables:
+This dataset appears to contain 12 variables:
 
-* Trip ID : An identification number assigned to each trip (from one bike station to another)
-* Start Time : The time and date that a bike was borrowed from a station (in MM/DD/YYYY HH:MM format)
-* Stop Time : The time and date that a bike was returned to a station (in MM/DD/YYYY HH:MM format)
-* Bike ID : The identification number for a specific bike
-* Trip Duration : Time of trip (measured in seconds)
-* From Station Name : The name of the station where the bike was borrowed from
-* To Station Name : The name of the station where the bike was returned to
-* From Station ID : The ID number of the station where the bike was borrowed from
-* To Station ID : The ID number of the station where the bike was returned to
-* User Type : Indicates whether the user was a “Member” (i.e., someone with a monthly or annual membership to Pronto!) or a “Short-Term Pass Holder” (i.e., someone who purchased a 24 hour or 3 day pass)
-* Gender : The gender of the rider (if known)
-* Birth Year : The year that the rider was born
+* __Trip ID__ : An identification number assigned to each trip (from one bike station to another)
+* __Start Time__ : The time and date that a bike was borrowed from a station (in MM/DD/YYYY HH:MM format)
+* __Stop Time__ : The time and date that a bike was returned to a station (in MM/DD/YYYY HH:MM format)
+* __Bike ID__ : The identification number for a specific bike
+* __Trip Duration__ : Time of trip (measured in seconds)
+* __From Station Name__ : The name of the station where the bike was borrowed from
+* __To Station Name__ : The name of the station where the bike was returned to
+* __From Station ID__ : The ID number of the station where the bike was borrowed from
+* __To Station ID__ : The ID number of the station where the bike was returned to
+* __User Type__ : Indicates whether the user was a “Member” (i.e., someone with a monthly or annual membership to Pronto!) or a “Short-Term Pass Holder” (i.e., someone who purchased a 24 hour or 3 day pass)
+* __Gender__ : The gender of the rider (if known)
+* __Birth Year__ : The year that the rider was born
 
 ### Weather
 ```{r}
 str(weather)
 ```
 
-This data set represents quite a bit of weather data in 21 variables.
+This dataset represents quite a bit of weather data in 21 variables.
 
-* Date : The date in MM/DD/YYYY format
-* Max Temperature F : The maximum temperature that day (in degrees F)
-* Mean Temperature F : The average temperature that day (in degrees F)
-* Min Temperature F : The minimum temperature that day (in degrees F)
-* Max Dew Point F : The maximum dew point (in degrees F)
-* Mean Dew Point F : The average dew point (in degrees F)
-* Min Dew Point F : The minimum dew point (in degrees F)
-* Max Humidity : The maximum humidity (in %)
-* Mean Humidity : The average humidity (in %)
-* Min Humidity : The minimum humidity (in %)
-* Maximum Sea Level Pressure : The maximum atmospheric pressure at sea level (in inches of mercury)
-* Mean Sea Level Pressure : The average atmospheric pressure at sea level (in inches of mercury)
-* Min Sea Level Pressure : The minimum atmospheric pressure at sea level (in inches of mercury)
-* Max Visibility Miles : The maximum visibility (in miles)
-* Mean Visibility Miles : The average visibility (in miles)
-* Min Visibility Miles : The minimum visibility (in miles)
-* Max Wind Speed MPH : The maximum sustained wind speed (in miles per hour)
-* Mean Wind Speed MPH : The average sustained wind speed (in miles per hour)
-* Max Gust Speed MPH : The maximum gust wind speed (in miles per hour)
-* Precipitation : The amount of precipitation (measured in inches)
-* Events : Weather events that occurred that day (e.g., rain, fog, snow, thunderstorm etc.)
+* __Date__ : The date in MM/DD/YYYY format
+* __Max Temperature F__ : The maximum temperature that day (in degrees F)
+* __Mean Temperature F__ : The average temperature that day (in degrees F)
+* __Min Temperature F__ : The minimum temperature that day (in degrees F)
+* __Max Dew Point F__ : The maximum dew point (in degrees F)
+* __Mean Dew Point F__ : The average dew point (in degrees F)
+* __Min Dew Point F__ : The minimum dew point (in degrees F)
+* __Max Humidity__ : The maximum humidity (in %)
+* __Mean Humidity__ : The average humidity (in %)
+* __Min Humidity__ : The minimum humidity (in %)
+* __Maximum Sea Level Pressure__ : The maximum atmospheric pressure at sea level (in inches of mercury)
+* __Mean Sea Level Pressure__ : The average atmospheric pressure at sea level (in inches of mercury)
+* __Min Sea Level Pressure__ : The minimum atmospheric pressure at sea level (in inches of mercury)
+* __Max Visibility Miles__ : The maximum visibility (in miles)
+* __Mean Visibility Miles__ : The average visibility (in miles)
+* __Min Visibility Miles__ : The minimum visibility (in miles)
+* __Max Wind Speed MPH__ : The maximum sustained wind speed (in miles per hour)
+* __Mean Wind Speed MPH__ : The average sustained wind speed (in miles per hour)
+* __Max Gust Speed MPH__ : The maximum gust wind speed (in miles per hour)
+* __Precipitation__ : The amount of precipitation (measured in inches)
+* __Events__ : Weather events that occurred that day (e.g., rain, fog, snow, thunderstorm etc.)
 
 #Data Visualizations
 ##Exploring the Stations Dataset
 
-Since the “Stations” data set was the first one I imported, let’s start with a little exploration there. First of all, how many unique stations are we dealing with?
+Since the “Stations” dataset was the first one I imported, let’s start with a little exploration there. First of all, how many unique stations are we dealing with?
 
 ```{r, message=FALSE}
 station %>% summarise(n_distinct(station_id))
@@ -133,7 +140,7 @@ Wow! 58 different stations! Let’s take a quick peek at where they are located.
 ```{r, message=FALSE}
 station_locs <- station %>% group_by(station_id) %>% select(1:4, -2)
 ```
-```{r, message=FALSE}
+```{r, fig.cap = "Station Locations", message=FALSE}
 # Load the correct map
 mymap <- get_map(location = "Seattle", maptype = "roadmap", zoom = 12)
 
@@ -145,7 +152,7 @@ ggmap(mymap) + geom_point(aes(x = long, y = lat), data = station_locs,
 
 So it looks like all of the stations are located near the Lower Queen Anne, Belltown, International District, Capitol Hill and University of Washington areas. Let’s take a more zoomed-in look.
 
-```{r, echo = FALSE}
+```{r, fig.cap = "Station Locations (Zoomed-in)", echo = FALSE}
 mymap2 <- get_map(location = c(lon = -122.315, lat = 47.63), maptype = "roadmap", zoom = 13)
 ggmap(mymap2) + 
   geom_point(aes(x = long, y = lat), data = station_locs, alpha = 0.7, size = 2, col = "darkred")
@@ -179,7 +186,7 @@ So they added more stations throughout the district that they serve, instead of 
 
 Now, I wonder how many bikes can be parked at each station (as of August 31,2016)?
 
-```{r}
+```{r, fig.cap = "Histogram of Current Dock Count"}
 hist(station$current_dockcount, breaks = "fd",
      freq = NULL, col = "lightblue",
      main = paste("Histogram of Current Dock Count"),
@@ -200,7 +207,7 @@ dock_change <- station %>% group_by(station_id) %>% select(station_id,
 
 Any stations with no change in number of docks are not shown here.
 
-```{r}
+```{r, fig.cap = "Change in Number of Bike Docks Per Station"}
 ggmap(mymap2) + 
   geom_point(aes(x = long, y = lat, size = factor(dock_change), color = factor(dock_change)), 
              data = dock_change, alpha = 0.6)
@@ -210,21 +217,20 @@ Wow! Looks like quite a few stations took away bike docks and none gained any. P
 
 ### Current Station Size
 
-I’m going to take one quick look at the current size of each station before moving on to the next data set. *Note: I did not include any stations that were closed as of August 31, 2016 in this map*
+I’m going to take one quick look at the current size of each station before moving on to the next dataset. _Note: I did not include any stations that were closed as of August 31, 2016 in this map_.
 
-```{r}
+```{r, fig.cap = "Current Station Size"}
 ggmap(mymap2) + 
-  geom_point(aes(x = long, y = lat, size = factor(current_dockcount), color = factor(current_dockcount)), 
-             data = dock_change, alpha = 0.7) 
+  geom_point(aes(x = long, y = lat, size = factor(current_dockcount), color = factor(current_dockcount)), data = dock_change, alpha = 0.7) 
 ```
 
 So it looks like the biggest stations tend to be on the outskirts of the rest. Where there are several stations in close proximity, there tend to be fewer bike docks at each station. That makes sense, logically speaking. If you go to a station and there is no bike to rent, you can easily go to another nearby, assuming there is another nearby. In areas where the stations are more secluded, it’s more important that there be bikes and open spaces readily available for users.
 
 Alright, I’m feeling good about exploring this dataset. Time to check out the trip dataset!
 
-## Exploring the Trips Data set
+## Exploring the trips dataset
 
-It’s been a while since we’ve looked at the trip data set, so let’s take another peek at it here.
+It’s been a while since we’ve looked at the trip dataset, so let’s take another peek at it here.
 
 ```{r}
 glimpse(trip)
@@ -244,11 +250,11 @@ trip_2$stop_date <- mdy(trip_2$stop_date)
 
 ```
 
-Great, so there are quite a few things that we can potentially look at using this data set by itself. Let’s start with the number of trips per day since Pronto! began opening bike stations. To do that, we need to recode our start date/times as POSIXct objects. We’ll use the `lubridate` package for this.
+Great, so there are quite a few things that we can potentially look at using this dataset by itself. Let’s start with the number of trips per day since Pronto! began opening bike stations. To do that, we need to recode our start date/times as POSIXct objects. We’ll use the `lubridate` package for this.
 
 Great! Time to visualize the number of rides per day.
 
-```{r}
+```{r, fig.cap = "Number of Rides per Day"}
 trip_2 %>% 
   group_by(start_date) %>%
   summarize(N = n()) %>%
@@ -275,7 +281,7 @@ start_date_ym <- trip_2 %>% mutate(ym = paste(year(start_date),
 
 Now plot. I think I’ll plot this by month but color it by season (where December, January, and February are “winter”, March, April, and May are “spring”, June, July, August are “summer”, and September, October, November are “autumn”)
 
-```{r}
+```{r, fig.cap = "Number of Trips per Month"}
 start_date_ym %>% 
   group_by(ym, Season) %>%
   summarize(N = n()) %>%
@@ -303,7 +309,7 @@ Trip_Duration_Month <- start_date_ym %>% mutate(trip_duration_min = tripduration
 
 Now to plot the average trip duration (in minutes) (plus or minus standard error), with colors indicating season.
 
-```{r, fig.align='center'}
+```{r, fig.align='center', fig.cap = "Average Trip Duration"}
 ggplot(Trip_Duration_Month, aes(x = ym, y = Avg, col= Season)) + 
   geom_point() +
   geom_line(aes(group = 1)) + 
@@ -335,17 +341,15 @@ Ok, so there are definitely more trips during the week than on the weekends. I w
 ```{r}
 start_date_ym$wd <- wday(start_date_ym$start_date, label = TRUE)
 ```
-```{r}
+```{r, fig.cap = "Number of Trips per Weekday"}
 start_date_ym %>%
   group_by(Season, wd) %>%
   summarize(N = n()) %>%
   ggplot(aes(x = wd, y = N, col = Season, fill=Season, group=Season)) +
   geom_point() +
   geom_line() +
-  theme_bw()+
+  theme_bw() +
   labs(x = "Day of the Week", y = "Number of Trips")
-
-
 ```
 
 So it looks like usage is relatively consistent across seasons, at least as far as the number of trips are concerned.
@@ -354,19 +358,42 @@ So it looks like usage is relatively consistent across seasons, at least as far 
 
 How about time of day? Are people using these around commuting times during the week and later on weekends?
 
-```{r}
+```{r, fig.cap = "Number of Trips by Time of Day", echo = FALSE}
 start_date_ym %>%
-  group_by(Season, wd, starttime) %>%
+  group_by(hour = hour(start_dt), Season, wd) %>%
   summarize(N = n()) %>%
-  ggplot(aes(x = starttime, y = N, col = Season, fill=Season, group=Season)) +
-  geom_point() +
+  ggplot(aes(x=hour, y=N, col=Season, group=Season)) +
+  geom_point()+
   geom_line() +
-  theme_bw()+
-  labs(x = "Hour of Day", y = "Number of Trips")+
+  theme_bw() +
+  labs(x="Hour of Day", y="Number of Trips") +
   facet_wrap(~ wd, ncol = 2)
 ```
 
 Wow, looks like regardless of the season, people are commuting to/from work using this service (there’s a spike between 8 and 10 AM and another between 4 and 7 PM Monday through Friday). But the weekends seem to be popular between 10 AM and 10 PM.
+
+### Number of Trips by Member Type
+
+I wonder if different types of members (those who have a membership vs. those that bought a 24 hour or 3 day pass) vary in the number of trips they take.
+
+If I were to guess, I’d think the short-term passes would be ideal for tourists or people looking for a quick weekend trip, whereas members may be more likely to continue using the service year-round. Let’s check out my assumptions by plotting, once again colored by season.
+
+
+
+```{r, fig.cap = "Number of Trips by Member Type", echo = FALSE}
+start_date_ym %>%
+  filter(usertype != "") %>%
+  group_by(ym, Season, usertype) %>%
+  summarize(N=n()) %>%
+  ggplot(aes(x=ym, y=N, color=Season, group=usertype, fill=usertype))+
+  geom_point(aes(shape=usertype, size=2))+
+  geom_line() +
+  theme_bw() +
+  labs(y="Total number of trips per month", x="Date")
+
+```
+
+Surprisingly (to me, at least), different types of users seem to follow similar patterns of usage. Spring and Summer are definitely the most popular times for anyone to ride a bike in the Seattle area.
 
 ### Trip Duration by Member Type
 
@@ -374,7 +401,65 @@ While it may seem that the trip duration shouldn’t vary widely by member type,
 
 Let’s see if these time limits cause differing behaviors in our users.
 
+```{r, fig.cap = "Number of Trips by Trip Duration", echo = FALSE}
+library(tidyverse)
+start_date_ym <- mutate(start_date_ym, freelim= ifelse(usertype=="Member", 45, 30))
+start_date_ym %>%
+  filter(usertype !="") %>%
+  group_by(tripduration, trip_id, usertype, freelim) %>%
+  summarize(N=n()) %>%
+  ggplot(aes(x=tripduration/60, fill=usertype), group=usertype) +
+    geom_histogram(binwidth = 2, show.legend = FALSE) +
+    xlim(1,60) +
+    facet_grid(.~usertype) + 
+    scale_fill_manual(values=c("pink", "light blue")) +
+    theme_bw() +
+    guides(colour=FALSE) +
+    geom_vline(aes(xintercept=freelim), linetype="dashed") +
+    labs(x="Trip Duration (minutes)", y="Number of Trips") 
+```
+
+
+Ok, so our members are pretty good about making sure that they return their bike before they incur extra charges, but the short-term pass holders frequently go over their time limit. I wonder how the cost of a trip varies for members and pass holders. Let’s try to calculate the cost of a trip.
+
 ```{r}
+start_date_ym <- mutate(start_date_ym, tripduration_m=tripduration/60)
+start_date_ym <- start_date_ym %>% mutate(cost = ifelse(usertype == "Member" & 
+    tripduration_m <= 45, 0, ifelse(usertype == "Member" & tripduration_m > 
+    45 & tripduration_m <= 75, 2, ifelse(usertype == "Member" & 
+    tripduration_m > 75, (2 + 2 * ceiling((tripduration_m - 75)/30)), 
+    ifelse(usertype == "Short-Term Pass Holder" & tripduration_m <= 
+        30, 0, ifelse(usertype == "Short-Term Pass Holder" & 
+        tripduration_m > 30 & tripduration_m < 60, 2, ifelse(usertype == 
+        "Short-Term Pass Holder" & tripduration_m > 60, (2 + 
+        5 * ceiling((tripduration_m - 60)/30)), NA)))))))
+```
+
+That was a complicated nested if/else statement! Let’s see how much these folks are paying in additional fees!
+
+```{r, fig.cap = "Number of Trips by Additional Fees", echo = FALSE}
+start_date_ym %>%
+  filter(cost > 0) %>%
+ggplot(aes(x=cost, fill=usertype)) +
+  geom_histogram() +
+  facet_grid(.~usertype) +
+  scale_fill_manual(values=c("pink","lightblue")) +
+  theme_bw() +
+  guides(fill=FALSE) +
+  theme(axis.text.x = element_text(angle=60, hjust=1))
+  labs(x="Additional Fees ($)")
+```
+
+
+Looks like short-term pass holders (who are already paying a higher price per day of biking), are also paying lots of extra fees. This could be because they are unfamiliar with the pricing structure and don’t realize they need to return their bike to a station within 30 minutes without getting charged. It is also possible that short-term users may be tourists who don’t know their way around as easily, and thus can’t find their way to a station within the time limit.
+
+### Member Demographics
+
+We only seem to have age and gender information about people who have an annual Pronto! membership, so we can at least take a look at what types of people use this service.
+
+Let’s look first at age.
+
+```{r, fig.cap = "Member Demographics", echo = FALSE}
 trip_2$usertype <- as.factor(trip_2$usertype)
 trip_age <- trip_2 %>% mutate(age = year(start_dt) - birthyear)
 
@@ -382,47 +467,27 @@ hist(trip_age$age, main = "Member Age", xlab = "Number of Riders",
     col = "#56B4E9", breaks = 25)
 ```
 
+My first instinct here is to say “Wow! There’s a lot of 20 and 30-somethings that use this service!” But this figure (and these data) may be a little misleading. You see, we don’t have any sort of Rider ID number, meaning we can’t take “individual activity level” into account. So we can’t tell if the tallest spike is because 5 very athletic 28-year-olds went on 4,000 trips each, or if 100 people went on 200 trips each, or if there were 20,000 28-year-olds who each only used the service once.
+
+The same problem would arise if we looked at gender, so I’m just going to move beyond demographics.
+
+### Skip Trip Routes
 
 
 
+# Exploring the weather data set
 
+Now that I’ve visualized all that I can think of in terms of the “trips” dataset, it’s time to take a brief look at the weather dataset.
 
-#Trip Routes
-```{r}
-# Create a dataframe with only station ID, latitude, and
-# longitude
-station_coord <- station %>% select(station_id, lat, long)
+Let’s get a quick reminder of what we’re looking at here.
 
-# Trim our trip dataframe to only include start & stop
-# dates/times, and station ID
-trip_route <- trip_2 %>% select(trip_id, starts_with("start_"), 
-    starts_with("stop_"), from_station_id, to_station_id, tripduration)
-
-# Match by station ID
-trip_route$start_lat <- station_coord[match(trip_route$from_station_id, 
-    station_coord$station_id), "lat"]
-
-trip_route$start_long <- station_coord[match(trip_route$from_station_id, 
-    station_coord$station_id), "long"]
-
-trip_route$stop_lat <- station_coord[match(trip_route$to_station_id, 
-    station_coord$station_id), "lat"]
-
-trip_route$stop_long <- station_coord[match(trip_route$to_station_id, 
-    station_coord$station_id), "long"]
-
-
-```
-
-
-#Exploring the weather data set
 ```{r}
 glimpse(weather)
 
-
 ```
 
-#Great, let’s change the Date variable to a POSIXct object, and make the “Events” variable factors.
+Great, let’s change the Date variable to a POSIXct object, and make the “Events” variable factors.
+
 ```{r}
 # Adjusting the Date Variable
 weather$Date <- mdy(weather$Date)
@@ -432,13 +497,17 @@ weather$Events <- as.factor(weather$Events)
 
 
 ```
-#Great. Now how many weather events are there?
+
+Great. Now how many weather events are there?
+
 ```{r}
 levels(weather$Events)
 
 ```
-#wow, so many combinations of rain!
-#let's combine a few things that seem to represent the same event 
+
+Wow! So mostly combinations of rain…
+
+Let’s combine a few of these things that seem to represent the same event.
 
 ```{r}
 weather$Events <- gsub("Fog , Rain|Fog-Rain", "Fog-Rain", weather$Events)
@@ -451,10 +520,13 @@ weather$Events <- as.factor(weather$Events)
 
 
 ```
-#look for missing values
+
+Where else does this dataset need to be cleaned up? Let’s look for any missing values.
+
 ```{r}
 summary(weather)
 ```
+
 Ok, so we have one NA for “Mean_Temperature_F”, “Max_Gust_Speed_MPH” seems to be represented as a character vector because it has “-” representing NA values, and we have 361 unlabelled Events.
 
 Max Gust Speed should be the easiest one to fix, so we’ll start there.
@@ -468,12 +540,13 @@ weather$Max_Gust_Speed_MPH <- as.numeric(weather$Max_Gust_Speed_MPH)
 
 Great! We changed any absent values for Maximum Gust Speed to 0 MPH and changed the variable type to a number. Uh oh, looks like there are still 185 NA values for Max Gust Speed. That’s a lot to try to replace. I would normally suggest generating a model that could try to predict those values based on other known values, but for now, we’ll just leave it alone.
 
-Since there is only one missing Mean Temperature, it seems the easiest way to fill in the hole is to look up what the average temperature was that day. Note: I certainly would not recommend this if it were any more than one missing value
+Since there is only one missing Mean Temperature, it seems the easiest way to fill in the hole is to look up what the average temperature was that day. _Note: I certainly would not recommend this if it were any more than one missing value_.
 
 ```{r}
 weather[which(is.na(weather$Mean_Temperature_F)), 1]
 
 ```
+
 Ok, so we’re looking for the Mean Temperature on February 14, 2016 in the zipcode 98101 (according to dataset documentation). Looks like the mean temperature that day was 50 degrees F.
 
 Time to substitute in that value.
@@ -485,7 +558,6 @@ weather[490, "Mean_Temperature_F"] <- "50"
 
 Perfect. Now what to do with the unlabelled “Event” categories. The dataset “ReadMe” file from Pronto! doesn’t include any information about this weather dataset. The only thing I can think to do is refer to the Event as “Other”.
 
-
 ```{r}
 weather$Events <- gsub("^$", "Other", weather$Events)
 weather$Events <- as.factor(weather$Events)
@@ -493,28 +565,53 @@ weather$Events <- as.factor(weather$Events)
 ```
 
 Ok, we’re in good shape. Now to do a few quick visualizations.
-##Temperature
-Minimum
+
+### Temperature
+
+#### Minimum
+
 ```{r}
-
-
+weather %>%
+  ggplot(aes(Date,Min_TemperatureF)) +
+  geom_line() +
+  theme_bw()  +
+  labs(y="Minimum Temperature (F)")
 ```
-Mean
+
+#### Mean
+
 ```{r}
-
-
+weather %>%
+  ggplot(aes(x=Date,y=as.numeric(Mean_Temperature_F))) +
+  geom_line() +
+  theme_bw() +
+  labs(y="Mean Temperature (F)")
 ```
-Maximum
+
+
+#### Maximum
+
 ```{r}
-
-
+weather %>%
+  ggplot(aes(Date,Max_Temperature_F)) +
+  geom_line() +
+  theme_bw() +
+  ylab("Maximum Temperature (F)")
 ```
-Events
+
+### Events
+
 ```{r}
-
+weather %>%
+  group_by(Events) %>%
+  ggplot(aes(Events), group=1) +
+    geom_bar() +
+    ylab("Number of Events")
 ```
-#Combining Weather and Trip Datasets
-Good, so we can now see some parts of the weather data. Let’s combine the weather data with our trip data. Let’s try a  left join from the dplyr package.
+### Combining Weather and Trip Datasets
+
+Good, so we can now see some parts of the weather data. Let’s combine the weather data with our trip data. Let’s try a `left join`  from the `dplyr` package.
+
 ```{r}
 # Make a copy of the data frame
 trip_3 <- trip_2
@@ -526,6 +623,15 @@ trip_3$Date <- trip_3$start_date
 trip_weather <- left_join(trip_3, weather, by = "Date")
 
 ```
-#Mean Temperature vs. Number of Trips
+
+### Mean Temperature vs. Number of Trips
+
 Ok. Now let’s see how the number of trips per day is influenced by weather (mean temperature, rounded to the nearest 5 degrees F)
 
+
+
+```{r}
+weather$Mean_Temperature_F<-as.numeric(weather$Mean_Temperature_F)
+
+
+```
