@@ -5,9 +5,6 @@ date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: bookdown::html_document2
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, fig.align = "center", comment = NA, prompt = TRUE)
-```
 
 #Introduction
   
@@ -20,7 +17,7 @@ Time to get started!
 rm(list=ls()) ### To clear namespace
 library(knitr)
 opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
-               echo=TRUE, warning=FALSE, message=FALSE)
+               echo=TRUE, warning=FALSE, message=FALSE, comment=NA, fig.align = 'center')
 ```
 
 ```{r, echo=FALSE, results=FALSE, message=FALSE, warning=FALSE}
@@ -631,10 +628,73 @@ trip_weather <- left_join(trip_3, weather, by = "Date")
 
 Ok. Now let’s see how the number of trips per day is influenced by weather (mean temperature, rounded to the nearest 5 degrees F)
 
+```{r}
+trip_weather$Mean_Temperature_F <- as.numeric(trip_weather$Mean_Temperature_F)
+trip_weather %>%
+  mutate(mround = 5*round(Mean_Temperature_F/5)) %>%
+  group_by(mround)%>%
+  summarize(N = n()) %>%
+  ggplot(aes(y=N,x=mround)) +
+  geom_line() +
+  theme_bw() +
+  ylab("Number of Trips") +
+  xlab("Temperature (Rounded to Nearest 5 degrees F)")
+```
 
+So, as expected, there are more trips when the weather is mild but not too warm (over 70F) or too cold (below 50F). However, this figure may be influenced by the overall number of days that exhibited each mean temperature. Let’s try to standardize that.
 
 ```{r}
-weather$Mean_Temperature_F<-as.numeric(weather$Mean_Temperature_F)
-
-
+trip_weather %>% 
+  mutate(rounded = 5*round(Mean_Temperature_F/5)) %>%
+  group_by(rounded) %>%
+  summarize(n = n(), Days = n_distinct(Date)) %>% 
+  mutate(ratio = n/Days) %>%
+    ggplot(aes(y=ratio,x=rounded)) +
+    geom_line() +
+    theme_bw() +
+    ylab("Number of Trips") +
+    xlab("Temperature (Rounded to Nearest 5 degrees F)")
 ```
+
+So when we standardize our measurements, correcting for the number of days that actually reached each temperature, we see a steady increase in the number of trips until around 75F where the trend levels off. People are more likely to ride a bike when it’s warm outside.
+
+
+### Precipitation vs. Number of Trips
+
+If you’ve ever heard of Seattle, you probably hear that it rains all the time there. Let’s see if that has an impact on the number of trips taken in a day.
+
+We’ll start with a figure standardized for number of days at a precipitation level, rounded to the nearest 0.2 inches.
+
+```{r}
+trip_weather %>% 
+  mutate(rounded = 0.2*round(Precipitation_In/0.2)) %>%
+  group_by(rounded) %>%
+  summarize(n = n(), Days = n_distinct(Date)) %>% 
+  mutate(Ratio2 = n/Days) %>%
+    ggplot(aes(x = rounded , y = Ratio2)) +
+    geom_line() + 
+    theme_bw() + 
+    labs(x = "Precipitation (Rounded to Nearest 0.2 Inches)", y = "Number of Trips/Number of Days at Precipitaton Level")
+```
+
+Looks like even Seattleites have a limit when it comes to riding a bike in the rain. The more it rained, the fewer trips were taken per day.
+
+# Conclusions
+
+So what did we learn from all of this? In the nearly 2 years since Pronto! opened in Seattle:
+
+* 236,065 bike trips were taken using this service
+* More trips occur in the spring and summer than winter/autumn
+* More trips occur during warm/dry weather
+* People tend to ride downhill more frequently than uphill
+* Pronto! bikes are used for work commutes during the week and more leisurely use on weekends
+* Short-Term Pass Holders are more likely to incur extra charges due to surpassing their time limit
+
+# Suggestions for Pronto!
+
+* Give users bonuses for bringing bikes back to a station on the top of the hill
+* Hold discounts in fall/winter
+* Find a way to alert short-term users that their time limit will be ending soon, and where the nearest station is to them at that time
+* Consider a 3rd membership option: “Commuter”. This may allow users to take bikes between 7-10 AM and 4-7 PM for free, but operate under a different time limit schedule during other times of day.
+
+As always, I appreciate any and all feedback from my work and appreciate you taking the time to see what I’ve done. Thanks!
